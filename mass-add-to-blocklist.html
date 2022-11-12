@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/sakura.css"/>
+    </head>
+
+    <body>
+        <h1>⛔️ Mass add to instance blocklist for Mastodon Admins</h1>
+
+        <p>
+            This tool allows you to massively block a list of instances in the form of a CSV.
+            Make sure that your CSV is in the following (exact) format:<br>
+
+            <table>
+                <tr>
+                    <th>domain</th>
+                    <th>public_reason</th>
+                </tr>
+                <tr>
+                    <td>hello.world</td>
+                    <td>Hate speech</td>
+                </tr>
+            </table>
+            <caption>This table is an example, feel free to download the <a href="example-blocklist.csv">example-blocklist.csv</a> as well</caption>
+        </p>
+
+        <h5>Getting Session ID and Mastodon Session ID</h6>
+
+        <p>
+            You need to get the Session ID and Mastodon Session ID by looking into the cookies of your browser. When you're fully logged in as an admin, you can go to your browser tools and go to the place where it stores cookies.
+            In there you should find two values: <code>_session_id</code> and <code>_mastodon_session_id</code>.
+        </p>
+
+        <h6>Firefox</h6>
+
+        <p>
+            When you're logged into Mastodon on Firefox, press <code>F12</code> or go to <code>Tools > Browser Tools > Web Developer Tools</code>.
+            Next up we navigate to <code>Storage</code> in the newly popped up window. On the panel on the left we navigate to <code>Cookies</code> and click on the URL of our instance.
+            You should see the above mentioned values of <code>_session_id</code> and <code>_mastodon_session_id</code>. You can double click the values and copy paste them in the form below.
+        </p>
+        
+
+        <i>Are you a tech savvy Mastodon Admin that wants to help me extend this for different browsers? Message me on <a href="https://gamedev.lgbt/@bram" rel="me">bram@gamedev.lgbt</a>! ✨</i>
+
+
+        <h5>Form for mass blocking</h6>
+        <form method="post" action="/api/mass_instance_block" enctype="multipart/form-data">
+            <label for="mastodon_domain">Your instance domain</label>
+            <input name="mastodon_domain" placeholder="e.g gamedev.lgbt, mastodon.art" type="text" />
+
+            <label for="session_id">Your Session ID <span style="font-size: .5em; color: #DD0000">(read warning below)</span></label>
+            <input name="session_id" placeholder="e.g YWggYXJlbnQgeW91IGNoZWVreSBmb3IgY2hlY2tpbmcgd2hhdCB0aGlzIHN0cmluZyB3YXMK" type="text" />
+
+            <label for="mastodon_session_id">Your Mastodon Session ID <span style="font-size: .5em; color: #DD0000">(read warning below)</span></label>
+            <input name="mastodon_session_id" placeholder="e.g YWggYXJlbnQgeW91IGNoZWVreSBmb3IgY2hlY2tpbmcgd2hhdCB0aGlzIHN0cmluZyB3YXMK" type="text" />
+
+            <label for="blocklist-csv">Your blocklist CSV</label>
+            <input name="blocklist_csv" type="file" accept="text/csv" />
+            
+            <br>
+            <input type="submit" />
+        </form>
+
+
+        <h6 style="color: #DD0000">Warning!</h3>
+
+        <p>
+            Don't just authorize any app to your Mastodon Instance or Mastodon account, serious damage can be done by giving your account or instance away to bad actors
+            Make sure that:
+            <ul>
+                <li>The connection you have with this page is protected by HTTPS (you can check by seeing if the connection is secured, usually shown with a lock icon).</li>
+                <li>The page you're visiting is who you think it is, this page is bound to <a href="https://gamedev.lgbt/@MastodonTools" rel="me">MastodonTools@gamedev.lgbt</a>. You can check if the account matches by visiting that link & seeing if the link back to this website is verified.</li>
+            </ul>
+        </p>
+
+        <footer>
+            Made by <a href="https://bram.dingelstad.works">Bram Dingelstad</a> (<a href="https://gamedev.lgbt/@bram">bram@gamedev.lgbt</a>)
+        </footer>
+
+    </body>
+
+</html>
+
