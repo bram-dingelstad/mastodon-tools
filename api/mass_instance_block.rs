@@ -116,7 +116,7 @@ fn handler(request: Request) -> Result<impl IntoResponse, VercelError> {
 	let response = Response::builder()
 		.status(StatusCode::OK)
 		.header("Content-Type", "text/plain")
-		.body("Hello world")
+		.body("All instances have been blocked!")
 		.expect("Internal Server Error");
 
 		Ok(response)
