@@ -183,7 +183,7 @@ label, legend, fieldset {
   margin-bottom: .5rem;
   font-weight: 600; }
 
-footer {
-    position: absolute;
-    bottom: 32px;
-}
+/* footer { */
+/*     position: absolute; */
+/*     bottom: 32px; */
+/* } */
