@@ -107,8 +107,9 @@ fn mass_block<'a>(request: Request) -> Result<String, &'a str> {
     let parts: Vec<Vec<&str>> = body.split(boundary)
         .filter_map(|entry| {
             let list: Vec<&str> = entry.trim()
-                .split("\r\n")
-                .filter(|string| string != &"--" && string.len() > 0)
+                .split("\r\n\r\n")
+                .filter(|string| string.len() > 0)
+                .map(|string| string.strip_suffix("--").unwrap_or(string).trim())
                 .collect();
 
             if list.len() > 1 {
@@ -133,15 +134,7 @@ fn mass_block<'a>(request: Request) -> Result<String, &'a str> {
             None => return Err("Could not capture form name in multipart")
         };
 
-        match part.len() {
-            2 => { // Has normal content
-                form_data.insert(name, part[1]);
-            },
-            3 => { // Has content type and buffer
-                form_data.insert(name, part[2]);
-            },
-            _ => return Err("Unexpected length of form data")
-        }
+        form_data.insert(name, part[1]);
     }
 
     let mastodon_domain = match form_data.get("mastodon_domain") {
