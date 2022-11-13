@@ -1,22 +1,19 @@
 [package]
 name = "index"
 version = "1.0.0"
-authors = [ "Your Name <your@site.com>" ]
+authors = [ "Bram Dingelstad <bram+mastodontools@dingelstad.works>" ]
 edition = "2018"
 
 [dependencies]
-http = "0.1"
-multipart = "0.18.0"
-multipart-stream = "0.1.2"
 regex = "1.7.0"
 vercel_lambda = "*"
 csv = "1.1.6"
 serde_derive = "1.0.147"
 serde = "1.0.147"
 
-  [dependencies.reqwest]
-  version = "0.11.12"
-  features = [ "blocking" ]
+[dependencies.reqwest]
+version = "0.11.12"
+features = [ "blocking" ]
 
 [lib]
 name = "mass_instance_block"
