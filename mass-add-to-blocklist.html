@@ -44,7 +44,7 @@
 
 
         <h5>Form for mass blocking</h6>
-        <form method="post" action="/api/mass_instance_block" enctype="multipart/form-data">
+        <form method="post" action="/api/mass_instance_block" enctype="multipart/form-data" accept-charset="utf-8">
             <label for="mastodon_domain">Your instance domain</label>
             <input name="mastodon_domain" placeholder="e.g gamedev.lgbt, mastodon.art" type="text" />
 
@@ -55,7 +55,7 @@
             <input name="mastodon_session_id" placeholder="e.g YWggYXJlbnQgeW91IGNoZWVreSBmb3IgY2hlY2tpbmcgd2hhdCB0aGlzIHN0cmluZyB3YXMK" type="text" />
 
             <label for="blocklist-csv">Your blocklist CSV</label>
-            <input name="blocklist_csv" type="file" accept="text/csv" />
+            <input name="blocklist_csv" type="file" accept=".csv" />
             
             <br>
             <small>Keep in mind that this is in beta, use the tool at your own risk</small>

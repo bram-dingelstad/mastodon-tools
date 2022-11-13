@@ -71,9 +71,9 @@ fn handler(request: Request) -> Result<Response<String>, VercelError> {
                     .status(http::StatusCode::INTERNAL_SERVER_ERROR)
                     .header("Content-Type", "text/html")
                     .body(format!(r#"
-                                                <html>
+                        <html>
                             <head>
-                                <title>Added mastodon blocks</title>
+                                <title>Something went wrong</title>
                                 <meta charset="utf-8" />
                                 <link rel="stylesheet" href="/sakura.css"/>
                             </head>
@@ -98,7 +98,7 @@ fn mass_block<'a>(request: Request) -> Result<String, &'a str> {
     let body: String = match request.body() {
         Body::Binary(bytes) => match std::str::from_utf8(&bytes) {
             Ok(string) => string.to_owned(),
-            Err(_) => return Err("Couldn\'t deserialize body from bindary")
+            Err(_) => return Err("Couldn\'t deserialize body from binary")
         },
         Body::Text(text) => text.to_string(),
         Body::Empty => return Err("Received empty body, need information in order to process request")
